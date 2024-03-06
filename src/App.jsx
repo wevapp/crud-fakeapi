@@ -6,7 +6,7 @@ const App = () => {
   return (
     <Routes>
       <Route index element={<Create />} />
-      <Route path="/" element={<Create />} />
+      <Route path="/crud-fakeapi" element={<Create />} />
       <Route path="/edit/:id" element={<Edit />} />
     </Routes>
   );
