@@ -48,31 +48,82 @@ const Create = () => {
   };
 
   return (
-    <div>
-      <div>
-        <input
-          type="text"
-          placeholder="Title"
-          value={newPost.title}
-          onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="userId"
-          value={newPost.userId}
-          onChange={(e) => setNewPost({ ...newPost, userId: e.target.value })}
-        />
-        <button onClick={handleAddPost}>
-          {editingPost ? "Update" : "Add"}
+    <div className="container">
+      <div className="text-center my-4">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          data-bs-whatever="@mdo"
+        >
+          +Add
         </button>
       </div>
 
-      <table>
-        <thead>
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Add Something
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <input
+                  type="text"
+                  placeholder="Title"
+                  className="form-control mt-4"
+                  value={newPost.title}
+                  onChange={(e) =>
+                    setNewPost({ ...newPost, title: e.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  placeholder="userId"
+                  className="form-control mt-4"
+                  value={newPost.userId}
+                  onChange={(e) =>
+                    setNewPost({ ...newPost, userId: e.target.value })
+                  }
+                />
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-primary"
+                onClick={handleAddPost}
+              >
+                {editingPost ? "Update" : "Add"}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* fields */}
+
+      <table className="table table-striped table-hover">
+        <thead className="border">
           <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>userId</th>
+            <th className="text-center">ID</th>
+            <th className="text-center">Title</th>
+            <th className="text-center">userId</th>
+            <th className="text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -82,8 +133,22 @@ const Create = () => {
               <td>{post.title}</td>
               <td>{post.userId}</td>
               <td>
-                <button onClick={() => handleEdit(post)}>Edit</button>
-                <button onClick={() => handleDelete(post.id)}>Del</button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-warning mx-2 rounded-none"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  data-bs-whatever="@mdo"
+                  onClick={() => handleEdit(post)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="btn btn-sm btn-danger"
+                  onClick={() => handleDelete(post.id)}
+                >
+                  Del
+                </button>
               </td>
             </tr>
           ))}
