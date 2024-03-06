@@ -3,6 +3,6 @@ import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "//crud-fakeapi/",
+  base: "/crud-fakeapi/",
   plugins: [react()],
 });
